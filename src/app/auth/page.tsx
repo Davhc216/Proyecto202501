@@ -1,11 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true); // true = Login, false = Registro
+  const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter();
 
   const toggleForm = () => setIsLogin(!isLogin);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    router.push('/dashboard');
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -13,7 +21,7 @@ const AuthPage = () => {
         <h2 className="text-2xl font-bold text-center">
           {isLogin ? 'Iniciar Sesión' : 'Registro de Usuario'}
         </h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           {!isLogin && (
             <div>
               <label className="block text-sm font-medium text-gray-700">Nombre</label>
