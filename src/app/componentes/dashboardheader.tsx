@@ -4,26 +4,28 @@ import { useRouter, usePathname } from 'next/navigation';
 import React from 'react';
 
 interface Props {
-  title: string; // Título que se muestra en la parte superior
+  title: string; // Título dinámico que se mostrará en el header
 }
 
 /**
- * Encabezado común para páginas del dashboard.
- * Incluye botón de cierre de sesión y regresar al dashboard si no estás ya ahí.
+ * Header reutilizable para las páginas del dashboard.
+ * Incluye botones para volver al dashboard y cerrar sesión.
  */
 const DashboardHeader: React.FC<Props> = ({ title }) => {
   const router = useRouter();
-  const path = usePathname();
+  const path = usePathname(); // Para saber en qué ruta estás actualmente
 
+  // Lógica para cerrar sesión (cuando haya backend limpiará el token)
   const handleLogout = () => {
-    
     router.push('/auth');
   };
 
+  // Redirige a la página principal del dashboard
   const handleBackToDashboard = () => {
     router.push('/dashboard');
   };
 
+  // Solo muestra el botón de "volver" si no estás en el dashboard
   const isInDashboard = path === '/dashboard';
 
   return (
@@ -50,3 +52,5 @@ const DashboardHeader: React.FC<Props> = ({ title }) => {
 };
 
 export default DashboardHeader;
+// Este componente se puede usar en cualquier página del dashboard
+// para mantener una consistencia en el header y facilitar la navegación.

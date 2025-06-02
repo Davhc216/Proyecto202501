@@ -4,9 +4,14 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+/**
+ * Página de inicio del dashboard.
+ * Muestra un resumen de módulos disponibles con enlaces visuales.
+ */
 const Dashboard = () => {
   const router = useRouter();
 
+  // Lista de módulos con sus rutas
   const modules = [
     { name: 'Resumen Financiero', path: '/dashboard/resumen' },
     { name: 'Categorías de Gasto', path: '/dashboard/categorias' },
@@ -15,8 +20,8 @@ const Dashboard = () => {
     { name: 'Análisis Financiero', path: '/dashboard/analisis' },
   ];
 
+  // Función de cerrar sesión
   const handleLogout = () => {
-    
     router.push('/auth');
   };
 
@@ -31,6 +36,8 @@ const Dashboard = () => {
           Cerrar Sesión
         </button>
       </div>
+
+      {/* Módulos representados como tarjetas */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {modules.map((mod) => (
           <Link href={mod.path} key={mod.name}>
@@ -46,3 +53,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+// Este componente representa la página principal del dashboard
+// y muestra enlaces a los diferentes módulos disponibles.

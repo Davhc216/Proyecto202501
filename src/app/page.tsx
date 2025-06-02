@@ -5,5 +5,6 @@ import { redirect } from 'next/navigation';
  * cuando se accede a la raíz del sitio (/).
  */
 export default function Home() {
-  redirect('/auth');
+  redirect('/auth'); // Redireccionamiento automático
+
 }
